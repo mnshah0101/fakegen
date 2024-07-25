@@ -1,0 +1,197 @@
+Metadata-Version: 2.1
+Name: fakegen_mnshah0101
+Version: 0.0.1
+Summary: A fake data generator
+Author: Moksh Shah
+Author-email: Moksh Shah <mnshah0101@gmail.com>
+License: MIT
+Project-URL: Homepage, https://github.com/mnshah0101/fakegen
+Project-URL: Issues, https://github.com/mnshah0101/fakegen/issues
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: anthropic==0.31.2
+
+# FakeGen - Fake Data Generator
+
+## Overview
+
+**FakeGen** is a Python library that generates fake data based on an example object using the Anthropic API. It can create diverse and realistic fake data for custom classes, dictionaries, and lists, maintaining the structure and data types of the provided example.
+
+## Features
+
+- Generates fake data for custom classes, dictionaries, and lists.
+- Uses the Anthropic API to ensure realistic and diverse data generation.
+- Maintains the structure and data types of the example object.
+- Handles complex attributes by focusing on basic attributes for data generation.
+
+## Installation
+
+To install the necessary dependencies, use the following command:
+
+```bash
+pip install anthropic
+```
+
+## Usage
+
+### Initialization
+
+First, initialize the `FakeGen` class with your Anthropic API key.
+
+```python
+from fakegen.FakeGen import FakeGen
+
+fake_gen = FakeGen(api_key="your_api_key_here")
+```
+
+### Generating Fake Data
+
+You can generate fake data for custom classes, dictionaries, and lists. Below are some examples.
+
+#### Custom Class
+
+```python
+from dataclasses import dataclass
+
+@dataclass
+class Person:
+    name: str
+    age: int
+    email: str
+
+example_person = Person(name="John Doe", age=30, email="johndoe@example.com")
+fake_persons = fake_gen.generate_fake_data(example_person, 3)
+
+print("Fake Persons:")
+for person in fake_persons:
+    print(person)
+```
+
+#### Dictionary
+
+```python
+example_dict = {"key1": "value1", "key2": 42, "key3": [1, 2, 3]}
+fake_dicts = fake_gen.generate_fake_data(example_dict, 3)
+
+print("\nFake Dicts:")
+for d in fake_dicts:
+    print(d)
+```
+
+#### List
+
+```python
+example_list = [1, 2, 3, 4, 5]
+fake_lists = fake_gen.generate_fake_data(example_list, 3)
+
+print("\nFake Lists:")
+for lst in fake_lists:
+    print(lst)
+```
+
+### Error Handling
+
+The library includes error handling to manage issues that may arise during data generation. It prints detailed error messages and raises exceptions to allow for higher-level handling.
+
+## Methods
+
+### `generate_fake_data`
+
+Generates fake data based on an example object.
+
+- **Parameters:**
+  - `example_object` (Any): The example object to base the fake data on.
+  - `num_objects` (int): The number of fake objects to generate.
+- **Returns:** `List[Any]`: A list of generated fake objects.
+- **Raises:**
+  - `ValueError`: If the response from the API is not valid JSON.
+  - `Exception`: For any other errors that occur during the API call or data processing.
+
+### `_infer_type`
+
+Infers the type of the given object.
+
+- **Parameters:** `obj` (Any): The object to infer the type of.
+- **Returns:** `str`: A string description of the object's type.
+
+### `_dict_to_object`
+
+Converts a dictionary to an object of the given type.
+
+- **Parameters:**
+  - `d` (Dict): The dictionary to convert.
+  - `obj_type` (type): The type to convert the dictionary to.
+- **Returns:** `Any`: An object of the given type.
+- **Raises:**
+  - `TypeError`: If the object cannot be instantiated with the given dictionary values.
+
+## Example
+
+Here is a complete example demonstrating the usage of FakeGen:
+
+```python
+import json
+from typing import Any, List, Dict
+import inspect
+from anthropic import Anthropic
+
+class FakeGen:
+    # (Class definition as provided above)
+
+# Example usage
+if __name__ == "__main__":
+    from dataclasses import dataclass
+    
+    @dataclass
+    class Person:
+        name: str
+        age: int
+        email: str
+
+    example_person = Person(name="John Doe", age=30, email="johndoe@example.com")
+    example_dict = {"key1": "value1", "key2": 42, "key3": [1, 2, 3]}
+    example_list = [1, 2, 3, 4, 5]
+    
+    fake_gen = FakeGen(api_key="your_api_key_here")
+    
+    # Generate fake data for custom class
+    try:
+        fake_persons = fake_gen.generate_fake_data(example_person, 3)
+        print("Fake Persons:")
+        for person in fake_persons:
+            print(person)
+    except Exception as e:
+        print(f"Failed to generate fake persons: {e}")
+    
+    # Generate fake data for dict
+    try:
+        fake_dicts = fake_gen.generate_fake_data(example_dict, 3)
+        print("\nFake Dicts:")
+        for d in fake_dicts:
+            print(d)
+    except Exception as e:
+        print(f"Failed to generate fake dicts: {e}")
+    
+    # Generate fake data for list
+    try:
+        fake_lists = fake_gen.generate_fake_data(example_list, 3)
+        print("\nFake Lists:")
+        for lst in fake_lists:
+            print(lst)
+    except Exception as e:
+        print(f"Failed to generate fake lists: {e}")
+```
+
+## Author
+
+**Moksh Shah**
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+
+This README provides a detailed overview of the FakeGen library, including installation instructions, usage examples, method descriptions, and error handling information. It should help users understand how to use the library effectively.

@@ -1,0 +1,16 @@
+README.md
+pyproject.toml
+setup.py
+FakeGen.egg-info/PKG-INFO
+FakeGen.egg-info/SOURCES.txt
+FakeGen.egg-info/dependency_links.txt
+FakeGen.egg-info/requires.txt
+FakeGen.egg-info/top_level.txt
+fakegen/FakeGen.py
+fakegen/__init__.py
+fakegen.egg-info/PKG-INFO
+fakegen.egg-info/SOURCES.txt
+fakegen.egg-info/dependency_links.txt
+fakegen.egg-info/requires.txt
+fakegen.egg-info/top_level.txt
+tests/test_myfunctions.py

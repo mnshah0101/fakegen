@@ -1,0 +1,28 @@
+[project]
+name = "fakegenai"
+version = "0.0.1"
+authors = [
+  { name = "Moksh Shah", email = "mnshah0101@gmail.com" },
+]
+description = "A fake data generator"
+readme = "README.md"
+requires-python = ">=3.8"
+license = { text = "MIT" }
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+dependencies = [
+    "anthropic==0.31.2"
+]
+
+[project.urls]
+Homepage = "https://github.com/mnshah0101/fakegen"
+Issues = "https://github.com/mnshah0101/fakegen/issues"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+ 
